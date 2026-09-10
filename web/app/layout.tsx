@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://courtkinetics.vercel.app"), // update once deployed
+  metadataBase: new URL("https://courtkinetics.vercel.app"),
   title: {
     default: "CourtKinetics — AI Badminton Performance Analysis",
     template: "%s | CourtKinetics",
