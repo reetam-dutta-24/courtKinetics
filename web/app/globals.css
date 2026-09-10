@@ -1,26 +1,239 @@
 @import "tailwindcss";
 
+/* Default theme (Court Cyan) — also the fallback if no data-theme is set */
 :root {
-  --background: #ffffff;
+  --background: #0F1729;
+  --foreground: #E5E9F0;
+  --card: #16213A;
+  --card-foreground: #E5E9F0;
+  --muted: #1E2A47;
+  --muted-foreground: #8B9BB5;
+  --accent: #22D3EE;
+  --accent-foreground: #0F1729;
+  --border: rgba(255, 255, 255, 0.08);
+  --glow: 34, 211, 238; /* RGB values, used in rgba() for glow effects */
+}
+
+[data-theme="court-cyan"] {
+  --background: #0F1729;
+  --foreground: #E5E9F0;
+  --card: #16213A;
+  --card-foreground: #E5E9F0;
+  --muted: #1E2A47;
+  --muted-foreground: #8B9BB5;
+  --accent: #22D3EE;
+  --accent-foreground: #0F1729;
+  --border: rgba(255, 255, 255, 0.08);
+  --glow: 34, 211, 238;
+}
+
+[data-theme="match-point"] {
+  --background: #0D1F17;
+  --foreground: #E5F0E9;
+  --card: #14291F;
+  --card-foreground: #E5F0E9;
+  --muted: #1C3527;
+  --muted-foreground: #8FB39E;
+  --accent: #84CC16;
+  --accent-foreground: #0D1F17;
+  --border: rgba(255, 255, 255, 0.08);
+  --glow: 132, 204, 22;
+}
+
+[data-theme="china-masters"] {
+  --background: #160B0B;
+  --foreground: #F0E5E5;
+  --card: #241212;
+  --card-foreground: #F0E5E5;
+  --muted: #3A1A1A;
+  --muted-foreground: #B58B8B;
+  --accent: #DC2626;
+  --accent-foreground: #F0E5E5;
+  --border: rgba(255, 255, 255, 0.08);
+  --glow: 220, 38, 38;
+}
+
+[data-theme="nightshade"] {
+  --background: #1A1025;
+  --foreground: #ECE5F0;
+  --card: #281B38;
+  --card-foreground: #ECE5F0;
+  --muted: #382550;
+  --muted-foreground: #A98FB3;
+  --accent: #C084FC;
+  --accent-foreground: #1A1025;
+  --border: rgba(255, 255, 255, 0.08);
+  --glow: 192, 132, 252;
+}
+
+[data-theme="stealth"] {
+  --background: #111111;
+  --foreground: #E5E5E5;
+  --card: #1C1C1C;
+  --card-foreground: #E5E5E5;
+  --muted: #2A2A2A;
+  --muted-foreground: #999999;
+  --accent: #E5E5E5;
+  --accent-foreground: #111111;
+  --border: rgba(255, 255, 255, 0.08);
+  --glow: 229, 229, 229;
+}
+
+[data-theme="daylight"] {
+  --background: #FAFAFA;
   --foreground: #171717;
+  --card: #FFFFFF;
+  --card-foreground: #171717;
+  --muted: #F0F0F0;
+  --muted-foreground: #6B7280;
+  --accent: #0E7490;
+  --accent-foreground: #FFFFFF;
+  --border: rgba(0, 0, 0, 0.08);
+  --glow: 14, 116, 144;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+@layer components {
+  /* ---- Typography scale ---- */
+  .text-display {
+    @apply text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-none;
+  }
+  .text-heading-1 {
+    @apply text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight leading-tight;
+  }
+  .text-heading-2 {
+    @apply text-xl sm:text-2xl font-semibold tracking-tight;
+  }
+  .text-heading-3 {
+    @apply text-lg sm:text-xl font-semibold;
+  }
+  .text-body {
+    @apply text-base leading-relaxed text-foreground;
+  }
+  .text-body-muted {
+    @apply text-base leading-relaxed text-muted-foreground;
+  }
+  .text-small {
+    @apply text-sm text-muted-foreground;
+  }
+  .text-stat {
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight tabular-nums;
+  }
+  .text-label {
+    @apply text-xs uppercase tracking-wider font-medium text-muted-foreground;
+  }
+
+  /* ---- Layout containers ---- */
+  .page-container {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .section-stack {
+    @apply flex flex-col gap-6 sm:gap-8;
+  }
+
+  /* ---- Cards ---- */
+  .card-base {
+    @apply bg-card text-card-foreground rounded-2xl border border-border p-4 sm:p-6;
+  }
+  .card-glass {
+    @apply card-base backdrop-blur-sm;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--card) 90%, white 4%) 0%,
+      var(--card) 100%
+    );
+  }
+  .card-interactive {
+    @apply card-glass transition-all duration-200 ease-out hover:border-accent/40 hover:-translate-y-0.5 cursor-pointer;
+  }
+
+  /* ---- Glow effects ---- */
+  .glow-accent {
+    box-shadow: 0 0 40px -8px rgba(var(--glow), 0.35);
+  }
+  .glow-accent-sm {
+    box-shadow: 0 0 20px -6px rgba(var(--glow), 0.25);
+  }
+  .glow-line {
+    filter: drop-shadow(0 0 6px rgba(var(--glow), 0.6));
+  }
+  .glow-bg-radial {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 0%,
+      rgba(var(--glow), 0.15) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+    filter: blur(40px);
+  }
+
+  /* ---- Buttons ---- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all duration-150 ease-out disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-accent-foreground hover:opacity-90 active:scale-[0.98];
+  }
+  .btn-secondary {
+    @apply btn bg-muted text-foreground border border-border hover:border-accent/40;
+  }
+  .btn-ghost {
+    @apply btn text-muted-foreground hover:text-foreground hover:bg-muted;
+  }
+
+  /* ---- Nav / sidebar ---- */
+  .nav-link {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors duration-150 hover:text-foreground hover:bg-muted;
+  }
+  .nav-link-active {
+    @apply nav-link text-accent bg-accent/10;
+  }
+
+  /* ---- Badges ---- */
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+  .badge-accent {
+    @apply badge bg-accent/15 text-accent;
+  }
+  .badge-muted {
+    @apply badge bg-muted text-muted-foreground;
+  }
+}
+
+/* ---- Custom scrollbar (matches theme instead of default browser style) ---- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
