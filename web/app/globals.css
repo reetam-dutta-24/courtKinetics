@@ -2,94 +2,108 @@
 
 /* Default theme (Court Cyan) — also the fallback if no data-theme is set */
 :root {
-  --background: #0F1729;
+  --background: #0A0F1F;
   --foreground: #E5E9F0;
-  --card: #16213A;
+  --card: #131B33;
   --card-foreground: #E5E9F0;
-  --muted: #1E2A47;
+  --muted: #1C2745;
   --muted-foreground: #8B9BB5;
   --accent: #22D3EE;
-  --accent-foreground: #0F1729;
-  --border: rgba(255, 255, 255, 0.08);
-  --glow: 34, 211, 238; /* RGB values, used in rgba() for glow effects */
+  --accent-secondary: #6366F1;
+  --accent-foreground: #0A0F1F;
+  --border: rgba(255, 255, 255, 0.1);
+  --glow: 34, 211, 238;
+  --glow-secondary: 99, 102, 241;
 }
 
 [data-theme="court-cyan"] {
-  --background: #0F1729;
+  --background: #0A0F1F;
   --foreground: #E5E9F0;
-  --card: #16213A;
+  --card: #131B33;
   --card-foreground: #E5E9F0;
-  --muted: #1E2A47;
+  --muted: #1C2745;
   --muted-foreground: #8B9BB5;
   --accent: #22D3EE;
-  --accent-foreground: #0F1729;
-  --border: rgba(255, 255, 255, 0.08);
+  --accent-secondary: #6366F1;
+  --accent-foreground: #0A0F1F;
+  --border: rgba(255, 255, 255, 0.1);
   --glow: 34, 211, 238;
+  --glow-secondary: 99, 102, 241;
 }
 
 [data-theme="match-point"] {
-  --background: #0D1F17;
+  --background: #081712;
   --foreground: #E5F0E9;
-  --card: #14291F;
+  --card: #0F2A1F;
   --card-foreground: #E5F0E9;
-  --muted: #1C3527;
+  --muted: #163827;
   --muted-foreground: #8FB39E;
   --accent: #84CC16;
-  --accent-foreground: #0D1F17;
-  --border: rgba(255, 255, 255, 0.08);
+  --accent-secondary: #10B981;
+  --accent-foreground: #081712;
+  --border: rgba(255, 255, 255, 0.1);
   --glow: 132, 204, 22;
+  --glow-secondary: 16, 185, 129;
 }
 
 [data-theme="china-masters"] {
-  --background: #160B0B;
-  --foreground: #F0E5E5;
-  --card: #241212;
-  --card-foreground: #F0E5E5;
-  --muted: #3A1A1A;
-  --muted-foreground: #B58B8B;
-  --accent: #DC2626;
-  --accent-foreground: #F0E5E5;
-  --border: rgba(255, 255, 255, 0.08);
-  --glow: 220, 38, 38;
+  --background: #150707;
+  --foreground: #F5E8E8;
+  --card: #290F0F;
+  --card-foreground: #F5E8E8;
+  --muted: #3D1616;
+  --muted-foreground: #C29999;
+  --accent: #EF4444;
+  --accent-secondary: #F97316;
+  --accent-foreground: #150707;
+  --border: rgba(255, 255, 255, 0.1);
+  --glow: 239, 68, 68;
+  --glow-secondary: 249, 115, 22;
 }
 
 [data-theme="nightshade"] {
-  --background: #1A1025;
-  --foreground: #ECE5F0;
-  --card: #281B38;
-  --card-foreground: #ECE5F0;
-  --muted: #382550;
-  --muted-foreground: #A98FB3;
+  --background: #140A22;
+  --foreground: #EEE5F5;
+  --card: #23133A;
+  --card-foreground: #EEE5F5;
+  --muted: #331E52;
+  --muted-foreground: #B399CC;
   --accent: #C084FC;
-  --accent-foreground: #1A1025;
-  --border: rgba(255, 255, 255, 0.08);
+  --accent-secondary: #EC4899;
+  --accent-foreground: #140A22;
+  --border: rgba(255, 255, 255, 0.1);
   --glow: 192, 132, 252;
+  --glow-secondary: 236, 72, 153;
 }
 
 [data-theme="stealth"] {
-  --background: #111111;
-  --foreground: #E5E5E5;
-  --card: #1C1C1C;
-  --card-foreground: #E5E5E5;
-  --muted: #2A2A2A;
-  --muted-foreground: #999999;
-  --accent: #E5E5E5;
-  --accent-foreground: #111111;
-  --border: rgba(255, 255, 255, 0.08);
-  --glow: 229, 229, 229;
+  --background: #0D0D0D;
+  --foreground: #EDEDED;
+  --card: #191919;
+  --card-foreground: #EDEDED;
+  --muted: #262626;
+  --muted-foreground: #A3A3A3;
+  --accent: #F5F5F5;
+  --accent-secondary: #64748B;
+  --accent-foreground: #0D0D0D;
+  --border: rgba(255, 255, 255, 0.1);
+  --glow: 245, 245, 245;
+  --glow-secondary: 100, 116, 139;
 }
 
 [data-theme="daylight"] {
-  --background: #FAFAFA;
-  --foreground: #171717;
+  --background: #F3F0FF;
+  --foreground: #171123;
   --card: #FFFFFF;
-  --card-foreground: #171717;
-  --muted: #F0F0F0;
-  --muted-foreground: #6B7280;
+  --card-foreground: #171123;
+  --muted: #E8E2FA;
+  --muted-foreground: #5B5470;
   --accent: #0E7490;
+  --accent-secondary: #7C3AED;
   --accent-foreground: #FFFFFF;
-  --border: rgba(0, 0, 0, 0.08);
-  --glow: 14, 116, 144;
+  --border: rgba(23, 17, 35, 0.1);
+  --glow: 124, 58, 237;
+  --glow-secondary: 14, 116, 144;
 }
 
 @theme inline {
@@ -100,6 +114,7 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent-secondary);
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
@@ -111,116 +126,178 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   transition: background-color 0.2s ease, color 0.2s ease;
+  position: relative;
+  min-height: 100vh;
 }
-@layer components {
+
+/* Ambient background glow — soft, large, blurred radial gradients using both
+   accent colors, fixed behind all page content. This is the site-wide "neon
+   atmosphere" effect from the reference images, not confined to one element. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(var(--glow), 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 20%, rgba(var(--glow-secondary), 0.14), transparent 60%);
+  pointer-events: none;
+}
+
+/* Focus states — accent-colored ring instead of default browser outline */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Text selection matches theme */
+::selection {
+  background: rgba(var(--glow), 0.3);
+  color: var(--foreground);
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Subtle film-grain texture over the ambient glow, adds depth without noise
+   being distracting — very low opacity, fixed so it doesn't scroll/repaint */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
   /* ---- Typography scale ---- */
-  .text-display {
-    @apply text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-none;
-  }
-  .text-heading-1 {
-    @apply text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight leading-tight;
-  }
-  .text-heading-2 {
-    @apply text-xl sm:text-2xl font-semibold tracking-tight;
-  }
-  .text-heading-3 {
-    @apply text-lg sm:text-xl font-semibold;
-  }
-  .text-body {
-    @apply text-base leading-relaxed text-foreground;
-  }
-  .text-body-muted {
-    @apply text-base leading-relaxed text-muted-foreground;
-  }
-  .text-small {
-    @apply text-sm text-muted-foreground;
-  }
-  .text-stat {
-    @apply text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight tabular-nums;
-  }
-  .text-label {
-    @apply text-xs uppercase tracking-wider font-medium text-muted-foreground;
-  }
+@utility text-display {
+  @apply text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-none;
+}
+@utility text-heading-1 {
+  @apply text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight leading-tight;
+}
+@utility text-heading-2 {
+  @apply text-xl sm:text-2xl font-semibold tracking-tight;
+}
+@utility text-heading-3 {
+  @apply text-lg sm:text-xl font-semibold;
+}
+@utility text-body {
+  @apply text-base leading-relaxed text-foreground;
+}
+@utility text-body-muted {
+  @apply text-base leading-relaxed text-muted-foreground;
+}
+@utility text-small {
+  @apply text-sm text-muted-foreground;
+}
+@utility text-stat {
+  @apply text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight tabular-nums;
+}
+@utility text-label {
+  @apply text-xs uppercase tracking-wider font-medium text-muted-foreground;
+}
+@utility text-gradient-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
-  /* ---- Layout containers ---- */
-  .page-container {
-    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-  .section-stack {
-    @apply flex flex-col gap-6 sm:gap-8;
-  }
+@utility page-container {
+  @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+@utility section-stack {
+  @apply flex flex-col gap-6 sm:gap-8;
+}
 
-  /* ---- Cards ---- */
-  .card-base {
-    @apply bg-card text-card-foreground rounded-2xl border border-border p-4 sm:p-6;
-  }
-  .card-glass {
-    @apply card-base backdrop-blur-sm;
-    background: linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--card) 90%, white 4%) 0%,
-      var(--card) 100%
-    );
-  }
-  .card-interactive {
-    @apply card-glass transition-all duration-200 ease-out hover:border-accent/40 hover:-translate-y-0.5 cursor-pointer;
-  }
+@utility card-base {
+  @apply bg-card text-card-foreground rounded-2xl border border-border p-4 sm:p-6;
+}
+@utility card-glass {
+  @apply card-base backdrop-blur-sm relative overflow-hidden;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--card) 85%, var(--accent) 6%) 0%,
+    var(--card) 60%
+  );
+}
+@utility card-interactive {
+  @apply card-glass transition-all duration-200 ease-out hover:-translate-y-0.5 cursor-pointer;
+  border-color: var(--border);
 
-  /* ---- Glow effects ---- */
-  .glow-accent {
-    box-shadow: 0 0 40px -8px rgba(var(--glow), 0.35);
-  }
-  .glow-accent-sm {
-    box-shadow: 0 0 20px -6px rgba(var(--glow), 0.25);
-  }
-  .glow-line {
-    filter: drop-shadow(0 0 6px rgba(var(--glow), 0.6));
-  }
-  .glow-bg-radial {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at 50% 0%,
-      rgba(var(--glow), 0.15) 0%,
-      transparent 60%
-    );
-    pointer-events: none;
-    filter: blur(40px);
-  }
-
-  /* ---- Buttons ---- */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all duration-150 ease-out disabled:opacity-50 disabled:pointer-events-none;
-  }
-  .btn-primary {
-    @apply btn bg-accent text-accent-foreground hover:opacity-90 active:scale-[0.98];
-  }
-  .btn-secondary {
-    @apply btn bg-muted text-foreground border border-border hover:border-accent/40;
-  }
-  .btn-ghost {
-    @apply btn text-muted-foreground hover:text-foreground hover:bg-muted;
-  }
-
-  /* ---- Nav / sidebar ---- */
-  .nav-link {
-    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors duration-150 hover:text-foreground hover:bg-muted;
-  }
-  .nav-link-active {
-    @apply nav-link text-accent bg-accent/10;
-  }
-
-  /* ---- Badges ---- */
-  .badge {
-    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
-  }
-  .badge-accent {
-    @apply badge bg-accent/15 text-accent;
-  }
-  .badge-muted {
-    @apply badge bg-muted text-muted-foreground;
+  &:hover {
+    border-color: rgba(var(--glow), 0.5);
+    box-shadow: 0 0 30px -6px rgba(var(--glow), 0.3);
   }
 }
+
+@utility glow-accent {
+  box-shadow: 0 0 40px -8px rgba(var(--glow), 0.35);
+}
+@utility glow-accent-sm {
+  box-shadow: 0 0 20px -6px rgba(var(--glow), 0.25);
+}
+@utility glow-line {
+  filter: drop-shadow(0 0 6px rgba(var(--glow), 0.6));
+}
+@utility glow-bg-radial {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(var(--glow), 0.15) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all duration-150 ease-out disabled:opacity-50 disabled:pointer-events-none;
+}
+
+@utility btn-primary {
+  @apply btn text-accent-foreground active:scale-[0.98];
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  box-shadow: 0 4px 20px -4px rgba(var(--glow), 0.4);
+
+  &:hover {
+    box-shadow: 0 4px 28px -4px rgba(var(--glow), 0.6);
+  }
+}
+@utility btn-secondary {
+  @apply btn bg-muted text-foreground border border-border hover:border-accent/40;
+}
+@utility btn-ghost {
+  @apply btn text-muted-foreground hover:text-foreground hover:bg-muted;
+}
+
+@utility nav-link {
+  @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors duration-150 hover:text-foreground hover:bg-muted;
+}
+@utility nav-link-active {
+  @apply nav-link text-accent bg-accent/10;
+}
+
+@utility badge {
+  @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+}
+@utility badge-accent {
+  @apply badge bg-accent/15 text-accent;
+}
+@utility badge-muted {
+  @apply badge bg-muted text-muted-foreground;
+}
+
 
 /* ---- Custom scrollbar (matches theme instead of default browser style) ---- */
 ::-webkit-scrollbar {
