@@ -7,3 +7,4 @@ build/
 .env.production
 next-env.d.ts
 npm-debug.log*
+/app/generated/prisma
