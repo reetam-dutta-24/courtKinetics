@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 import { NavLink } from "@/components/ui/NavLink";
+import { UserMenu } from "@/components/ui/UserMenue";
 import {
   LayoutDashboard,
   Video,
@@ -15,7 +16,7 @@ const NAV_ITEMS = [
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-background text-foreground">
       {/* Sidebar */}
       <aside className="hidden md:flex w-64 flex-col border-r border-border p-4 gap-6 shrink-0">
         <div className="flex items-center gap-2 px-2 py-2">
@@ -29,11 +30,12 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         </nav>
 
         <div className="border-t border-border pt-4 flex flex-col gap-3">
-          <span className="text-label px-2">Theme</span>
-          <div className="px-2">
-            <ThemeSwitcher />
-          </div>
-        </div>
+  <UserMenu />
+  <span className="text-label px-2">Theme</span>
+  <div className="px-2">
+    <ThemeSwitcher />
+  </div>
+</div>
       </aside>
 
       {/* Main content */}

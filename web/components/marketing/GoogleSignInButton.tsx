@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import { Spinner } from "../ui/Spinner";
 
 export function GoogleSignInButton() {
   const [loading, setLoading] = useState(false);
@@ -28,6 +29,7 @@ export function GoogleSignInButton() {
           Continue with Google
         </>
       )}
+      {loading ? (<><Spinner size={16} /> Redirecting…</>) : (<>{/* existing google icon svg */} Continue with Google</>)}
     </button>
   );
 }

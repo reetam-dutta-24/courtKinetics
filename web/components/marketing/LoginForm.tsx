@@ -6,6 +6,7 @@ import { signIn } from "next-auth/react";
 import { loginSchema } from "@/lib/validations/auth";
 import { GoogleSignInButton } from "./GoogleSignInButton";
 import { AuthDivider } from "./AuthDivider";
+import { Spinner } from "../ui/Spinner";
 
 export function LoginForm() {
   const router = useRouter();
@@ -62,8 +63,8 @@ export function LoginForm() {
         </div>
         {error && <p className="text-small text-red-400">{error}</p>}
         <button type="submit" disabled={loading} className="btn-primary glow-accent-sm w-full justify-center py-3">
-          {loading ? "Signing in…" : "Sign In"}
-        </button>
+  {loading ? (<><Spinner size={16} /> Signing in…</>) : "Sign In"}
+</button>
       </form>
       <AuthDivider />
       <GoogleSignInButton />

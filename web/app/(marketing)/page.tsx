@@ -3,6 +3,7 @@ import { Zap, AlertTriangle, Users, Target, GitBranch } from "lucide-react";
 import { Navbar } from "@/components/marketing/Navbar";
 import { Testimonials } from "@/components/marketing/Testimonials";
 import { Footer } from "@/components/marketing/Footer";
+import { auth } from "@/auth";
 const heroVideo = "/videos/hero-image.mp4";
 
 const FEATURES = [
@@ -19,7 +20,9 @@ const STEPS = [
   { n: "04", title: "Improve", description: "Track whether the feedback measurably changes your game over weeks." },
 ];
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const session = await auth();
+   const isLoggedIn = !!session?.user;
   return (
     <div className="relative overflow-hidden">
       <Navbar />
@@ -59,7 +62,9 @@ export default function LandingPage() {
             hypothesis-driven research project, not just a demo.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
-            <Link href="/login" className="btn-primary glow-accent-sm px-6 py-3 text-base">Get Started</Link>
+            <Link href={isLoggedIn ? "/dashboard" : "/signup"} className="btn-primary glow-accent-sm px-6 py-3 text-base">
+  {isLoggedIn ? "Go to Dashboard" : "Get Started"}
+</Link>
             <a href="#how-it-works" className="btn-secondary backdrop-blur-sm px-6 py-3 text-base">See How It Works</a>
           </div>
         </div>

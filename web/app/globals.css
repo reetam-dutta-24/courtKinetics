@@ -328,3 +328,10 @@ html {
 @utility footer-surface {
   background: color-mix(in srgb, var(--background) 55%, black 45%);
 }
+@utility animate-in {
+  animation: fadeSlideIn 0.35s ease-out;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
