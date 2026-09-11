@@ -72,15 +72,16 @@ model VerificationToken {
 
 // --- Domain tables ---
 model TrainingSession {
-  id          String   @id @default(cuid())
-  userId      String
-  videoUrl    String
-  sessionType String   @default("singles") // "singles" | "doubles"
-  status      String   @default("pending")  // "pending" | "processing" | "ready" | "failed"
-  recordedAt  DateTime @default(now())
-  createdAt   DateTime @default(now())
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  rallies     Rally[]
+  id              String   @id @default(cuid())
+  userId          String
+  videoUrl        String
+  sessionType     String   @default("singles")
+  focusModule     String   @default("anticipation") // "anticipation" | "mistakes" | "doubles" | "miss_chances"
+  status          String   @default("pending")
+  recordedAt      DateTime @default(now())
+  createdAt       DateTime @default(now())
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rallies         Rally[]
 }
 
 model Rally {

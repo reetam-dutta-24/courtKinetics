@@ -6,12 +6,16 @@ import {
   LayoutDashboard,
   Video,
   Upload,
+  BarChart3,
+  Settings,
 } from "lucide-react";
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
-  { href: "/sessions", label: "Sessions", icon: <Video size={18} /> },
-  { href: "/upload", label: "Upload", icon: <Upload size={18} /> },
+  { href: "/dashboard/analytics", label: "Analytics", icon: <BarChart3 size={18} /> },
+  { href: "/dashboard/sessions", label: "Sessions", icon: <Video size={18} /> },
+  { href: "/dashboard/upload", label: "Upload", icon: <Upload size={18} /> },
+  { href: "/dashboard/settings", label: "Settings", icon: <Settings size={18} /> },
 ];
 
 export default function AppLayout({ children }: { children: ReactNode }) {
