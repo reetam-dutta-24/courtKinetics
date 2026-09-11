@@ -20,11 +20,12 @@ Full rationale in `docs/pitch.md` and the phased build plan in `docs/roadmap.md`
 - Player onboarding flow (3-step wizard, writes to `PlayerProfile`)
 - 6-theme design system (Court Cyan, Match Point, China Masters, Nightshade, Stealth, Daylight) with a full custom component library — cards, buttons, badges, nav, glow/glassmorphism effects
 - Public landing page — video hero, feature grid, testimonials carousel, detailed footer, session-aware CTAs
-- App shell with sidebar navigation, dashboard route (dynamic, real Prisma queries)
+- Dashboard section: Home overview (real KPI cards, profile summary, recent sessions), Settings (profile editing, theme control, account deletion) — all backed by live Prisma queries
 - Database schema live on Supabase Postgres, migrated via Prisma
 
 **Not yet built:**
-- The actual ML/CV pipeline (Phase 1 of the roadmap) — pose extraction, MediaPipe integration, and all four hypotheses (H1–H4) have not been started. The web layer was deliberately built first; this is the next major phase of work.
+- The actual ML/CV pipeline (Phase 1 of the roadmap) — pose extraction, MediaPipe integration, and all four hypotheses (H1–H4) have not been started
+- Dashboard Analytics, Upload, and Sessions pages (in progress)
 
 ## Architecture
 
@@ -45,6 +46,7 @@ There's no mature JavaScript equivalent to MediaPipe or the Python ML ecosystem,
 | Auth | Auth.js (NextAuth v5) — Google OAuth + Credentials, JWT sessions |
 | Validation | Zod |
 | Password hashing | bcryptjs |
+| Charts | Recharts (planned — Analytics page) |
 | ML/CV (planned) | Python, MediaPipe, OpenCV, FastAPI |
 | Theming | Custom CSS-variable system + `next-themes` |
 
@@ -76,13 +78,15 @@ Note: pins `mediapipe==0.10.14` — newer versions require downloading model fil
 web/
 app/
 (marketing)/ # Public: landing, /login, /signup — fixed theme
-(app)/ # Authenticated: /dashboard, /sessions, /upload — user's theme
+(app)/
+dashboard/ # Authenticated: Home, /analytics, /sessions, /upload, /settings
 api/ # Auth handler, registration endpoint
 onboarding/ # Player profile setup (server action + wizard)
 components/
 ui/ # Design system primitives (Button, Card, StatCard, etc.)
 marketing/ # Landing/auth-specific components
 onboarding/ # Onboarding wizard
+settings/ # Settings-specific components
 prisma/
 schema.prisma # Full data model
 middleware.ts # Route protection, auth redirects
@@ -98,7 +102,7 @@ requirements.txt
 2. Pose extraction pipeline (MediaPipe → structured keypoint data) — **next**
 3. H1: Anticipation timing model
 4. H2: Mistake/error-pattern classifier
-5. Backend + dashboard wiring to real data ✅ (shell), pipeline output ⏳
+5. Backend + dashboard wiring to real data ✅ (Home, Settings), ⏳ (Analytics, Sessions, Upload)
 6. Scope decision: full 4-hypothesis vs. focused build
 7–8. H3 (doubles), H4 (miss chances) — optional stretch
 9. Multi-week self-experiment: does the feedback measurably change performance?
