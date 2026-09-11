@@ -27,8 +27,8 @@ export function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <Link href="/api/auth/signin" className="btn-secondary">Log In</Link>
-          <Link href="/api/auth/signin" className="btn-primary glow-accent-sm">Sign Up</Link>
+          <Link href="/login" className="btn-secondary">Log In</Link>
+          <Link href="/signup" className="btn-primary glow-accent-sm">Sign Up</Link>
         </div>
 
         <button className="md:hidden text-foreground" onClick={() => setOpen((o) => !o)} aria-label="Toggle menu">

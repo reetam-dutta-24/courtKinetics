@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Zap, AlertTriangle, Users, Target, GitBranch } from "lucide-react";
 import { Navbar } from "@/components/marketing/Navbar";
 import { Testimonials } from "@/components/marketing/Testimonials";
-
+import { Footer } from "@/components/marketing/Footer";
 const heroVideo = "/videos/hero-image.mp4";
 
 const FEATURES = [
@@ -33,7 +33,7 @@ export default function LandingPage() {
   playsInline
   poster="/videos/hero-poster.jpg"
   className="absolute top-20 left-0 w-full h-[calc(100vh-5rem)] object-cover motion-reduce:hidden"
-  style={{ filter: "brightness(0.6) saturate(0.95)" }}
+  style={{ filter: "brightness(0.72) saturate(1)" }}
 >
   <source src={heroVideo} type="video/mp4" />
 </video>
@@ -42,8 +42,8 @@ export default function LandingPage() {
   className="absolute top-20 left-0 w-full h-[calc(100vh-5rem)] pointer-events-none"
   style={{
     background: `
-      radial-gradient(ellipse 68% 58% at 50% 38%, transparent 0%, rgba(0,0,0,0.55) 68%, rgba(0,0,0,0.85) 100%),
-      linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.25) 30%, rgba(0,0,0,0.55) 100%)
+      radial-gradient(ellipse 68% 58% at 50% 38%, transparent 0%, rgba(0,0,0,0.4) 68%, rgba(0,0,0,0.7) 100%),
+      linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.4) 100%)
     `,
   }}
 />
@@ -59,7 +59,7 @@ export default function LandingPage() {
             hypothesis-driven research project, not just a demo.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
-            <Link href="/api/auth/signin" className="btn-primary glow-accent-sm px-6 py-3 text-base">Get Started</Link>
+            <Link href="/login" className="btn-primary glow-accent-sm px-6 py-3 text-base">Get Started</Link>
             <a href="#how-it-works" className="btn-secondary backdrop-blur-sm px-6 py-3 text-base">See How It Works</a>
           </div>
         </div>
@@ -120,18 +120,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="footer-surface border-t border-border">
-        <div className="page-container py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span className="text-small">© 2026 CourtKinetics. A hypothesis-driven research project.</span>
-
-          <a
-            href="https://github.com/reetam-dutta-24/courtKinetics"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-small hover:text-accent transition-colors"
-          >
-            <GitBranch size={16} /> View on GitHub
-          </a>
-        </div>
+        <Footer />
       </footer>
     </div>
   );
