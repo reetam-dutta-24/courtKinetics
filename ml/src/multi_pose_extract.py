@@ -18,7 +18,7 @@ KP_NAMES = [
 ]
 
 
-def extract(video_path, out_csv, weights, max_seconds, imgsz):
+def extract(video_path, out_csv, weights, max_seconds, imgsz, stride=1):
     model = YOLO(weights)
     cap = cv2.VideoCapture(str(video_path))
     if not cap.isOpened():
@@ -42,7 +42,9 @@ def extract(video_path, out_csv, weights, max_seconds, imgsz):
             ts = cap.get(cv2.CAP_PROP_POS_MSEC)
             if max_seconds is not None and ts > max_seconds * 1000:
                 break
-
+            if frame_idx % stride != 0:
+                frame_idx += 1
+                continue
             res = model.track(frame, persist=True, tracker="bytetrack.yaml",
                               imgsz=imgsz, conf=0.25, verbose=False)[0]
 
@@ -87,3 +89,6 @@ if __name__ == "__main__":
     p.add_argument("--imgsz", type=int, default=1280)
     a = p.parse_args()
     extract(a.video, a.out, a.weights, a.max_seconds, a.imgsz)
+    p.add_argument("--stride", type=int, default=1)
+    a = p.parse_args()
+    extract(a.video, a.out, a.weights, a.max_seconds, a.imgsz, a.stride)
