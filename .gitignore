@@ -10,4 +10,4 @@ ml/data/processed/*
 ml/data/clips/*
 !ml/data/raw/.gitkeep
 !ml/data/processed/.gitkeep
-!ml/data/clips/.gitkeep
+!ml/data/clips/.gitkeep*.pt
