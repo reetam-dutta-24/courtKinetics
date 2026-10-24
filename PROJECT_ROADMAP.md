@@ -46,19 +46,55 @@ Pose-estimation performance analysis for badminton — anticipation timing, unfo
 - ⬜ **Upload** (`/dashboard/upload`) — deferred until ML pipeline exists to consume uploaded video (see Section 5, decision log)
 
 ### 2.4 ML/CV Pipeline (Phase 1 — in progress)
-- ✅ Real, consented footage obtained (9 matches, ~2h30m, singles/doubles/mixed, local club, multiple courts/players)
-- 🟡 Files transferred to dev machine (some files flagged possibly corrupted — pending size verification)
-- ⬜ `pose_extractor.py` — MediaPipe pose extraction, video → long-format keypoint CSV
-- ⬜ `preprocessing.py` — interpolation, Savitzky-Golay smoothing, normalization
-- ⬜ `visualize_overlay.py` — skeleton-overlay QA rendering
-- ⬜ Detection-rate sanity check with warning threshold
-- ⬜ Manual rally-boundary + outcome/error tagging (V1 approach, per session)
+- ✅ Real, consented footage obtained (local club/friends, casual play; 8 clips verified readable in `ml/data/raw/`, ~3.7 GB; confirm 8 vs 9 with friend)
+- ✅ Clips transferred (LocalSend) and verified decodable (`inspect_videos.py`, `save_previews.py`, `make_contact_sheet.py`)
+- ✅ `pose_extractor.py` — MediaPipe single-person baseline (~97% detection), `inspect_keypoints.py` validation, `overlay_check.py` / `make_overlay_sheet.py` QA overlays
+- ✅ Finding: MediaPipe tracks only ONE person → insufficient for 2/4-player analysis and per-player report cards
+- ✅ Ultralytics YOLO-Pose + torch/torchvision installed (pretrained, inference only; AGPL-3.0 noted)
+- 🟡 `multi_pose_extract.py` — YOLO-Pose + ByteTrack, COCO-17 keypoints, persistent track IDs; 20 s test on video1 pending (check unique track IDs, per-ID frames, median person height, runtime)
+- ⬜ Verify mediapipe 0.10.14 still imports alongside ultralytics (else separate venv); add `ultralytics` to `requirements.txt`, `*.pt` to `.gitignore`
+- ⬜ Compute budget: extrapolate runtime for ~500k frames (frame skipping / tagged-segments-only / GPU)
+- ⬜ Court calibration (homography, click 4 corners) + court-region filter (drop spectators/other courts)
+- ⬜ Track-ID → player mapping (user clicks which box is them; measure ID-swap rate)
+- ⬜ `preprocessing.py` — interpolation, Savitzky-Golay smoothing, normalization (scale x/y by width/height separately)
+- ⬜ Run extraction on all clips
+- ⬜ Rally-tagging tool in web app (rally start/end, outcome, error type, shot type) — replaces manual spreadsheet tagging
+- ⬜ Per-player report cards (each tracked player gets own metrics + sample sizes)
 
 ### 2.5 Hypothesis Modules (Phase 2+)
 - ⬜ **H1:** anticipation/reaction-lag feature engineering + trained model (temporal train/test split)
 - ⬜ **H2:** error-type classifier + SHAP explainability
 - ⬜ **H3 (stretch):** dual-player tracking, court calibration, coverage/symmetry model
 - ⬜ **H4 (stretch):** "chance" frame detection, conversion-rate model
+
+### 2.5b Metric Modules (per-player report card)
+Each module outputs per-player, per-session metrics with sample size (n) and an "insufficient data" flag.
+
+| # | Module | Notes |
+|---|---|---|
+| 1 | Doubles formation | Upload → review → re-upload improvement loop; compares sessions under comparable conditions |
+| 2 | Footwork | Split-step, recovery to base, movement efficiency |
+| 3 | Smash | Technique + frequency/conversion |
+| 4 | Anticipation / reaction | = H1 |
+| 5 | Forced errors | Distinguish from unforced (H2) |
+| 6 | Missed chances | = H4 |
+| 7 | Backhand | Technique + error rate |
+| 8 | Drop shot | Technique + outcome |
+| 9 | Overall singles reviewer | Aggregates relevant modules |
+| 10 | Overall technique reviewer | Aggregates technique modules |
+
+**Shot taxonomy:** serve, clear, lift, drop, smash, drive, net shot, block/return — each forehand/backhand.
+
+**Adopted additions:**
+- Shot taxonomy (above) as the shared label set
+- Rally-tagging tool in the web app
+- Attack/defense phase labeling per rally segment
+- Error zone map (where on court errors occur)
+- Match-level (not frame-level) train/test splitting + sample-size flags on every metric
+
+**Improvement loop design:** per-session per-player metric vectors; user selects which tracked box is them; only comparable conditions compared; anonymize other players.
+
+**Later / deferred:** serve checker, movement heatmap, shot predictability (see Backlog).
 
 ### 2.6 Self-Experiment (Phase 9)
 - ⬜ Baseline tracking period (no feedback shown)
@@ -121,7 +157,7 @@ This is the original, fixed phase structure — numbering does not change as new
 | Phase | Description | Status |
 |---|---|---|
 | **0** | Setup, recording protocol, environments | ✅ |
-| **1** | Pose extraction pipeline (MediaPipe → structured keypoint data) | 🟡 **current phase** — real footage obtained, `pose_extractor.py` not yet written |
+| **1** | Pose extraction pipeline (MediaPipe baseline done → YOLO-Pose multi-person + tracking) | 🟡 **current phase** — baseline done; multi-person test pending |
 | **2** | H1: Anticipation timing model | ⬜ |
 | **3** | H2: Mistake/error-pattern classifier | ⬜ |
 | **4** | Backend + async pipeline | 🟡 — sub-items: |
@@ -133,7 +169,7 @@ This is the original, fixed phase structure — numbering does not change as new
 | **6** | Scope decision: full 4-hypothesis vs. focused 2-hypothesis build | ⬜ |
 | **7** | H3: Doubles positioning (stretch) | ⬜ |
 | **8** | H4: Missed-chance conversion (stretch) | ⬜ |
-| **9** | Self-experiment: does feedback measurably change performance | ⬜ |
+| **9** | Improvement loop: does feedback measurably change performance (upload → review → re-upload; per-player, comparable conditions; originally n=1 self-experiment, now generalized to any consenting player) | ⬜ |
 | **10** | Writeup, demo video, final polish | ⬜ |
 
 ### Backlog / Stretch Feature Modules
@@ -147,12 +183,14 @@ Natural extensions of the same pipeline once core phases are stable — not requ
 
 ## 7. Current Open Items (living checklist)
 
-- [ ] Verify file sizes of all 9 transferred match videos against LocalSend's reported sizes — identify and re-transfer any corrupted/incomplete files
-- [ ] Select first clip for `pose_extractor.py` smoke test
-- [ ] Write and run `pose_extractor.py` against first clip
-- [ ] Review detection rate; visually verify with skeleton overlay before trusting output
-- [ ] Write `preprocessing.py`
-- [ ] Begin manual rally-tagging on first processed session
+- [ ] Save this file as `docs/roadmap.md` in the repo and commit
+- [ ] Verify install: `python -c "import torch, ultralytics"` and `import mediapipe` still OK
+- [ ] Add `*.pt` to root `.gitignore`; add `ultralytics` to `ml/requirements.txt`
+- [ ] Run 20 s multi-person test on video1; paste summary + runtime
+- [ ] Commit `overlay_check.py` and `make_overlay_sheet.py` if not yet committed
+- [ ] Overlay with boxes + track IDs; court calibration; track→player mapping
+- [ ] Confirm 8 vs 9 clips with friend
+- [ ] Deferred: fix CI lint errors; middleware→proxy codemod; Phase 6 scope decision
 
 ---
 
